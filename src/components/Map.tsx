@@ -130,7 +130,7 @@ export default function Map() {
     const longitudeIncrement = 0.00005;
 
     return (
-        <div className="grid grid-cols-1 gap-y-5 place-items-center h-[84%] bg-third">
+        <div className="grid grid-cols-1 gap-y-3 place-items-center h-[84%] bg-third">
             <MapFilterSection
                 districts={districts}
                 selectedDistrict={selectedDistrict}
