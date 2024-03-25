@@ -25,6 +25,8 @@ root.render(
                         <Route path="register" element={<UserSignUp/>} />
                         <Route path="hero" element={<UserPage/>} />
                         <Route path="recycling-1-0-1" element={<InProgress/>} />
+                        <Route path="kontakt" element={<InProgress/>} />
+                        <Route path="über-uns" element={<InProgress/>} />
                         <Route path="*" element={<ErrorPage/>} />
                     </Route>
                 </Routes>
