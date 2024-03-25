@@ -35,22 +35,10 @@ export default function Home() {
                 {!isMobileOrTablet &&
                     <Navbar/>
                 }
-                <div className="h-[84vh] pt-[10vh] md:pt-[16vh] items-center relative">
-                    <div className="h-[25vh] content-center text-center">
-                        <p className="text-[4vw] md:text-[2.8vw] font-primary font-bold text-amber-50">WoVie - Wo und Wie recyceln in
-                            Wien</p>
-                    </div>
-                    <div className="w-full h-[10vh] flex justify-center">
-                        <img className="h-[10vh]" src={wheel}/>
-                    </div>
-                    <div className="h-[50vh] z-10 overflow-hidden absolute">
-                        <div className="-ml-[35vw] h-[170vw] w-[170vw] bg-white rounded-full"></div>
-                    </div>
-                </div>
                 {isMobileOrTablet && <HomeMobile></HomeMobile>}
                 {!isMobileOrTablet &&
-                    <div className="h-[45%] mt-[0vh] z-10 relative bg-blue-400">
-                        <img className="absolute top-0" src={wave}/>
+                    <div className="h-[100vh] mt-[0vh] z-10 relative bg-white">
+                        <img alt="wavy orange background" className="absolute top-0" src={wave}/>
                         <div className="absolute top-[20vw] ml-[12.5vw]">
                             <p className="text-third font-bold text-[4vw] ">Finde Container</p>
                             <p className="text-third font-bold text-[4vw]">in deiner Nähe</p>
