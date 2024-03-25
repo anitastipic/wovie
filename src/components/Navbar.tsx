@@ -16,9 +16,9 @@ export default function Navbar() {
                     >Karte</Link>
                     <Link to="/recycling-1-0-1" className=" font-semibold text-lg transition-colors duration-300 transform hover:text-wovie mx-3"
                        >Recycling 1 - 0 - 1</Link>
-                    <Link to="/recycling-1-0-1" className=" font-semibold text-lg transition-colors duration-300 transform hover:text-wovie mx-3"
+                    <Link to="/über-uns" className=" font-semibold text-lg transition-colors duration-300 transform hover:text-wovie mx-3"
                     >Über uns</Link>
-                    <Link to="/recycling-1-0-1" className=" font-semibold text-lg transition-colors duration-300 transform hover:text-wovie mx-3"
+                    <Link to="/kontakt" className=" font-semibold text-lg transition-colors duration-300 transform hover:text-wovie mx-3"
                     >Kontakt</Link>
                 </div>
                 <Link to="/hero" className=" h-[6.5vh] flex w-auto ml-7">

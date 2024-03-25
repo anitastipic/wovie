@@ -25,22 +25,24 @@ export default function UserSignUp() {
         navigate('/login');
     }
     return (
-        <div className="bg-third h-screen ">
+        <div className="bg-white h-screen ">
             <Navbar/>
             <div className="h-screen w-full flex justify-center items-center">
-                <div className="loginContainer bg-[#F6F5F3] rounded-r-2xl text-center h-[50vh] w-[40vh] p-6">
+                <div className="bg-slate-100 rounded-r-2xl h-[50vh] w-[40vh] p-6">
                     <p className="font-semibold text-[2.5vh] mb-5">Einfach ausfüllen und loslegen!</p>
-                    <form className="flex-col space-y-2" onSubmit={handleSubmit}>
-                        <label className="label login">Username:</label><br/>
+                    <form className="flex-col space-y-4" onSubmit={handleSubmit}>
+                        <label className="label login text-sm font-semibold">Username:</label><br/>
                         <input
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                         <br/>
-                        <label className="label login">Password:</label><br/>
+                        <label className="label login text-sm font-semibold">Password:</label><br/>
                         <input
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                         <br/>
                         <button className="bg-white hover:border-wovie text-gray-800 font-semibold py-2 px-4 border border-gray-800 rounded shadow" type="submit" onSubmit={() => handleSubmit} >Registrieren</button>

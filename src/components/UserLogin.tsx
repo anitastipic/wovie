@@ -36,10 +36,10 @@ export default function UserLogin() {
     }
 
     return (
-        <div className="bg-third">
+        <div className="bg-white">
             <Navbar/>
             <div className="h-screen w-full flex justify-evenly items-center">
-                <div className="loginContainer bg-[#F6F5F3] rounded-r-2xl h-[50vh] w-[40vh] p-6">
+                <div className="loginContainer bg-slate-100 rounded-r-2xl h-[50vh] w-[40vh] p-6">
                     <p className="font-semibold text-[2.5vh] mb-3 ">Willkommen zurück, Hero!</p>
                     <form className="flex-col space-y-4" onSubmit={handleSubmit}>
                         <label className="label login text-sm font-semibold">Username:</label><br/>

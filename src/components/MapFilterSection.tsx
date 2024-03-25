@@ -12,8 +12,16 @@ type MapSideBarProps = {
     handleWasteTypeChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
     selectedDistrict: string | null;
+    isLoading: boolean;
 };
-export default function MapFilterSection({districts, handleDistrictChange, selectedDistrict, handleWasteTypeChange, handleSubmit,}: MapSideBarProps) {
+export default function MapFilterSection({
+                                             districts,
+                                             handleDistrictChange,
+                                             selectedDistrict,
+                                             handleWasteTypeChange,
+                                             handleSubmit,
+                                             isLoading
+                                         }: MapSideBarProps) {
     const wasteTypes = [{
         english: "organicWaste",
         german: "BIO"
@@ -26,6 +34,8 @@ export default function MapFilterSection({districts, handleDistrictChange, selec
                     onChange={handleDistrictChange}
                     value={selectedDistrict || ''}>
                 <option className="" value="">Wähle einen Bezirk</option>
+                {isLoading &&
+                    <option>Districts Loading...</option>}
                 {districts.map(district => (
                     <option key={district.id} value={district.districtName}>{district.districtName}</option>
                 ))}
@@ -33,13 +43,14 @@ export default function MapFilterSection({districts, handleDistrictChange, selec
             <div className="flex flex-col md:flex-row mt-[2vh] sm:mt-[0vh] md:ml-[2.5vw] py-[2vh]">
                 {wasteTypes.map(({english, german}, index) => {
                     const color = english == "organicWaste" ? "#924C1A" :
-                            english == "plasticWaste" ? "#FDE306" :
-                                english == "glassWaste" ? "#2F5924" : "third";
+                        english == "plasticWaste" ? "#FDE306" :
+                            english == "glassWaste" ? "#2F5924" : "third";
 
-                    return (<div key={index} className="pl-[0.5vw] flex items-center">
-                        <input onChange={handleWasteTypeChange} type="checkbox" className="border-2 ml-[0.5vw]" value={english}/>
+                    return (<div key={index} className="pl-[0.5vw] flex items-center text-third">
+                        <input onChange={handleWasteTypeChange} type="checkbox" className="border-2 ml-[0.5vw]"
+                               value={english}/>
                         <label
-                            className="ml-3 text-amber-50 font-light text-[2.5vh] sm:text-[2vh] md:text-[2.5vh]">{german}</label>
+                            className="ml-3 font-light text-[2.5vh] sm:text-[2vh] md:text-[2.5vh]">{german}</label>
                         <div style={{backgroundColor: color}}
                              className="ml-[1vw] md:ml-[0.5vw] rounded-full h-[2vh] w-[2vh] md:h-[2.5vh] md:w-[2.5vh]"></div>
                     </div>);

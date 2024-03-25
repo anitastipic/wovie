@@ -35,10 +35,14 @@ export default function Map() {
     const [districts, setDistricts] = useState<District[]>([]);
     const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
     const [selectedWasteTypes, setSelectedWasteTypes] = useState({paperWaste:false, glassWaste: false, organicWaste:false, plasticWaste: false})
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const fetchDistricts = () => {
+        setIsLoading(true);
         return fetch("https://wovie-backend.onrender.com/district")
-            .then((res) => res.json());
+            .then((res) => res.json())
+            .finally(() => setIsLoading(true));
     };
 
     useEffect(() => {
@@ -130,13 +134,14 @@ export default function Map() {
     const longitudeIncrement = 0.00005;
 
     return (
-        <div className="grid grid-cols-1 gap-y-3 place-items-center h-[84%] bg-third">
+        <div className="grid grid-cols-1 gap-y-3 place-items-center h-[84%] bg-white">
             <MapFilterSection
                 districts={districts}
                 selectedDistrict={selectedDistrict}
                 handleDistrictChange={handleDistrictChange}
                 handleWasteTypeChange={handleWasteTypeChange}
-                handleSubmit={handleSubmit}/>
+                handleSubmit={handleSubmit}
+                isLoading={isLoading}/>
 
             <div id="map" className="">
                 <MapContainer className="h-[68vh] w-[95vw]" center={[48.208492, 16.373127]} zoom={13}

@@ -22,7 +22,7 @@ export default function MapPage() {
     const className = isMobileOrTablet ? "invisible" : "visible"
 
     return (
-        <div className="bg-third h-screen w-full scroll-m-0">
+        <div className="bg-white h-screen w-full scroll-m-0">
                 <div className={className}>
                     <Navbar></Navbar>
                 </div>
