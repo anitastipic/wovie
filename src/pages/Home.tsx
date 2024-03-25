@@ -38,15 +38,15 @@ export default function Home() {
                 {isMobileOrTablet && <HomeMobile></HomeMobile>}
                 {!isMobileOrTablet &&
                     <div className="h-[100vh] mt-[0vh] z-10 relative bg-white">
-                        <img alt="wavy orange background" className="absolute top-0" src={wave}/>
-                        <div className="absolute top-[20vw] ml-[12.5vw]">
+                        <img alt="wavy orange background" className="absolute top-[400px] md:top-[240px] lg:top-[120px] xl:top-[20px]" src={wave}/>
+                        <div className="absolute top-[282px] ml-[12.5vw] flex-col">
                             <p className="text-third font-bold text-[4vw] ">Finde Container</p>
                             <p className="text-third font-bold text-[4vw]">in deiner Nähe</p>
                         </div>
-                        <img className="absolute h-[18vw] top-[13vw] left-[74.3vw]" src={pin}/>
-                        <img className="absolute h-[26vw] top-[30vw] left-[70.3vw]" src={trashcanYellow}/>
+                        <img className="absolute h-[18vw] top-[220px] left-[74.3vw]" src={pin}/>
+                        <img className="absolute h-[26vw] top-[425px] left-[70.3vw]" src={trashcanYellow}/>
                         <button
-                            className="absolute top-[46vw] left-[17.7vw] h-[5vw] w-[15vw] bg-third rounded-full text-[2vw] text-amber-50"
+                            className="absolute top-[270px] lg:top-[460px] xl:top-[500px] left-[17.7vw] h-[5vw] w-[15vw] bg-third rounded-full text-[2vw] text-amber-50"
                             onClick={() => nav('/map')}>Zur Karte
                         </button>
                     </div>
