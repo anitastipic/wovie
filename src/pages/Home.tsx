@@ -35,7 +35,7 @@ export default function Home() {
                 {!isMobileOrTablet &&
                     <Navbar/>
                 }
-                <div className="h-[84vh] pt-0 md:pt-[16vh] items-center relative">
+                <div className="h-[84vh] pt-[10vh] md:pt-[16vh] items-center relative">
                     <div className="h-[25vh] content-center text-center">
                         <p className="text-[4vw] md:text-[2.8vw] font-primary font-bold text-amber-50">WoVie - Wo und Wie recyceln in
                             Wien</p>
