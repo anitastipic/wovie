@@ -4,9 +4,9 @@ export default function HomeMobile() {
     const nav = useNavigate();
 
     return (
-        <div className="h-[100vh] bg-third flex justify-center items-center">
+        <div className="h-[100%] z-20 absolute top-[40%] left-[34.5vw]">
             <button
-                className="h-[20vw] w-[50vw] bg-wovie rounded-full text-[8vw] text-amber-50"
+                className="h-[13vw] w-[30vw] bg-wovie rounded-full text-[4vw] text-amber-50"
                 onClick={() => nav('/map')}>Zur Karte
             </button>
         </div>
