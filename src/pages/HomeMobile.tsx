@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import logo from '../images/logos/WoVie-logo-weiß.png';
+import logo from '../images/logos/WoVie-logo.png';
 
 export default function HomeMobile() {
     const nav = useNavigate();
@@ -9,7 +9,7 @@ export default function HomeMobile() {
             <div className="grid grid-cols-1 place-items-center">
                 <img src={logo} alt={"logo"} className="h-[20vh] w-auto"/>
                 <button
-                    className="h-[13vw] w-[30vw] mt-[8vh] bg-wovie rounded-full text-[4vw] text-amber-50"
+                    className="h-[7vh] w-[30vw] mt-[7vh] bg-wovie rounded-full text-[4vw] text-amber-50"
                     onClick={() => nav('/map')}>Zur Karte
                 </button>
             </div>
