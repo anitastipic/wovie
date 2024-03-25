@@ -18,13 +18,14 @@ root.render(
         <AuthProvider>
             <HashRouter>
                 <Routes>
-                    <Route path="/" element={<Layout/>} errorElement={<ErrorPage/>}>
+                    <Route path="/" element={<Layout/>}>
                         <Route index element={<Home/>} />
                         <Route path="map" element={<MapPage/>} />
                         <Route path="login" element={<UserLogin/>} />
                         <Route path="register" element={<UserSignUp/>} />
                         <Route path="hero" element={<UserPage/>} />
                         <Route path="recycling-1-0-1" element={<InProgress/>} />
+                        <Route path="*" element={<ErrorPage/>} />
                     </Route>
                 </Routes>
             </HashRouter>
