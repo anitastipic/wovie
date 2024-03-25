@@ -14,8 +14,8 @@ export default function Navbar() {
                     <Link to="/map"
                           className="text-amber-50 text-lg transition-colors duration-300 transform hover:text-wovie mx-3"
                     >Karte</Link>
-                    <a className="text-amber-50 text-lg transition-colors duration-300 transform hover:text-wovie mx-3"
-                       href="/recycling-1-0-1">Recycling 1 - 0 - 1</a>
+                    <Link to="/recycling-1-0-1" className="text-amber-50 text-lg transition-colors duration-300 transform hover:text-wovie mx-3"
+                       >Recycling 1 - 0 - 1</Link>
                 </div>
                 <Link to="/hero" className=" h-[6.5vh] flex w-auto">
                     <img src={heroBadge} alt="Hero" className="object-contain"/>
