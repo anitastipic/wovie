@@ -37,7 +37,7 @@ export default function Map() {
     const [selectedWasteTypes, setSelectedWasteTypes] = useState({paperWaste:false, glassWaste: false, organicWaste:false, plasticWaste: false})
 
     const fetchDistricts = () => {
-        return fetch("http://localhost:8080/district")
+        return fetch("https://wovie-backend.onrender.com/district")
             .then((res) => res.json());
     };
 
@@ -54,7 +54,7 @@ export default function Map() {
         enabledWasteTypes.forEach(type => queryParams.append("wasteTypes", type));
         if (selectedDistrict) queryParams.set("districtName", selectedDistrict);
 
-        const fetchURL = `http://localhost:8080/container/filter?${queryParams.toString()}`;
+        const fetchURL = `https://wovie-backend.onrender.com/container/filter?${queryParams.toString()}`;
         return fetch(fetchURL)
             .then(res => res.json())
     };
