@@ -1,11 +1,9 @@
-import React, {useEffect, useState} from 'react';
 import {MapContainer, Marker, Popup, TileLayer} from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-extra-markers';
 import 'leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css';
 import 'leaflet-extra-markers/dist/js/leaflet.extra-markers.min.js';
-import MapFilterSection from "./MapFilterSection.tsx";
 
 
 type Container = {
@@ -30,61 +28,11 @@ type District = {
     districtNumber: number
 };
 
-export default function Map() {
-    const [containers, setContainers] = useState<Container[]>([]);
-    const [districts, setDistricts] = useState<District[]>([]);
-    const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
-    const [selectedWasteTypes, setSelectedWasteTypes] = useState({paperWaste:false, glassWaste: false, organicWaste:false, plasticWaste: false})
-    const [isLoading, setIsLoading] = useState(false);
+type MapProps = {
+    containers: Container[],
+}
 
-
-    const fetchDistricts = () => {
-        setIsLoading(true);
-        return fetch("https://wovie-backend.onrender.com/district")
-            .then((res) => res.json())
-            .finally(() => setIsLoading(true));
-    };
-
-    useEffect(() => {
-        fetchDistricts().then(setDistricts);
-    }, []);
-
-    const fetchFilteredContainers = () => {
-        const enabledWasteTypes = Object.entries(selectedWasteTypes)
-            .filter(([_, value]) => value)
-            .map(([key, _]) => key);
-
-        const queryParams = new URLSearchParams();
-        enabledWasteTypes.forEach(type => queryParams.append("wasteTypes", type));
-        if (selectedDistrict) queryParams.set("districtName", selectedDistrict);
-
-        const fetchURL = `https://wovie-backend.onrender.com/container/filter?${queryParams.toString()}`;
-        return fetch(fetchURL)
-            .then(res => res.json())
-    };
-
-    const handleDistrictChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const districtName = event.target.value;
-        setSelectedDistrict(districtName);
-    };
-
-    const handleWasteTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const key = event.target.value;
-        const isChecked = event.target.checked;
-        setSelectedWasteTypes(prev => ({
-            ...prev,
-            [key]: isChecked,
-        }));
-    }
-
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        fetchFilteredContainers().then((res: Container[]) => {
-            setContainers(res);
-        }).catch((error) => {
-                console.error("Failed to fetch containers:", error);
-            });
-    }
+export default function Map({containers} : MapProps) {
 
     const getMarkerColor = (wasteType: string) => {
         switch (wasteType) {
@@ -134,51 +82,39 @@ export default function Map() {
     const longitudeIncrement = 0.00005;
 
     return (
-        <div className="flex flex-col items-center h-[84%] bg-white">
-            <MapFilterSection
-                districts={districts}
-                selectedDistrict={selectedDistrict}
-                handleDistrictChange={handleDistrictChange}
-                handleWasteTypeChange={handleWasteTypeChange}
-                handleSubmit={handleSubmit}
-                isLoading={isLoading}/>
+        <MapContainer className="h-[68vh] w-[90vw]" center={[48.208492, 16.373127]} zoom={13}
+                      scrollWheelZoom={true}>
+            <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            {containers.reduce<React.ReactNode[]>((acc, container, index, array) => {
+                const sameLocationContainers = array.filter(c => c.latitude === container.latitude && c.longitude === container.longitude);
+                const containerIndex = sameLocationContainers.findIndex(c => c.id === container.id);
+                const adjustedLongitude = container.longitude + (containerIndex * longitudeIncrement);
 
-            <div id="map" className="mt-4 border-[3.5px] border-wovie rounded-md shadow-slate-500 shadow-2xl">
-                <MapContainer className="h-[68vh] w-[90vw]" center={[48.208492, 16.373127]} zoom={13}
-                              scrollWheelZoom={true}>
-                    <TileLayer
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                    {containers.reduce<React.ReactNode[]>((acc, container, index, array) => {
-                        const sameLocationContainers = array.filter(c => c.latitude === container.latitude && c.longitude === container.longitude);
-                        const containerIndex = sameLocationContainers.findIndex(c => c.id === container.id);
-                        const adjustedLongitude = container.longitude + (containerIndex * longitudeIncrement);
+                const wasteType = container.organicWaste ? "organicWaste" :
+                    container.plasticWaste ? "plasticWaste" :
+                        container.paperWaste ? "paperWaste" :
+                            container.glassWaste ? "glassWaste" :
+                                container.metalWaste ? "metalWaste" : "default";
+                const markerColor = getMarkerColor(wasteType);
+                const icon = createMarkerIcon(markerColor);
 
-                        const wasteType = container.organicWaste ? "organicWaste" :
-                            container.plasticWaste ? "plasticWaste" :
-                                container.paperWaste ? "paperWaste" :
-                                    container.glassWaste ? "glassWaste" :
-                                        container.metalWaste ? "metalWaste" : "default";
-                        const markerColor = getMarkerColor(wasteType);
-                        const icon = createMarkerIcon(markerColor);
+                acc.push(
+                    <Marker
+                        key={container.id}
+                        position={[adjustedLongitude, container.latitude]}
+                        icon={icon}>
+                        <Popup>
+                            {container.street + " " + container.streetNumber + ", " + container.districtNumber + ". " + container.districtName}
+                        </Popup>
+                    </Marker>
+                );
 
-                        acc.push(
-                            <Marker
-                                key={container.id}
-                                position={[adjustedLongitude, container.latitude]}
-                                icon={icon}>
-                                <Popup>
-                                    {container.street + " " + container.streetNumber + ", " + container.districtNumber + ". " + container.districtName}
-                                </Popup>
-                            </Marker>
-                        );
-
-                        return acc;
-                    }, [])}
-                </MapContainer>
-            </div>
-        </div>
+                return acc;
+            }, [])}
+        </MapContainer>
     );
 
 }
