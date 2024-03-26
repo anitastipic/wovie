@@ -134,7 +134,7 @@ export default function Map() {
     const longitudeIncrement = 0.00005;
 
     return (
-        <div className="grid grid-cols-1 gap-y-3 place-items-center h-[84%] bg-white">
+        <div className="flex flex-col items-center h-[84%] bg-white">
             <MapFilterSection
                 districts={districts}
                 selectedDistrict={selectedDistrict}
@@ -143,8 +143,8 @@ export default function Map() {
                 handleSubmit={handleSubmit}
                 isLoading={isLoading}/>
 
-            <div id="map" className="">
-                <MapContainer className="h-[68vh] w-[95vw]" center={[48.208492, 16.373127]} zoom={13}
+            <div id="map" className="mt-4 border-[3.5px] border-wovie rounded-md shadow-slate-500 shadow-2xl">
+                <MapContainer className="h-[68vh] w-[90vw]" center={[48.208492, 16.373127]} zoom={13}
                               scrollWheelZoom={true}>
                     <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

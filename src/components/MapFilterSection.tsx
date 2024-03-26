@@ -28,9 +28,9 @@ export default function MapFilterSection({
     }, {english: "plasticWaste", german: "Verpackung"}, {english: "glassWaste", german: "Glas"}];
 
     return (
-        <form className="flex flex-col md:flex-row w-full pl-[2.5vw] md:items-center"
+        <form className="w-[90vw] flex flex-col sm:flex-row md:items-center"
               onSubmit={handleSubmit}>
-            <select className="h-[4vh] rounded-full bg-wovie pl-2 text-[2.3vh] text-third w-[55vw] sm:w-[25vw]"
+            <select className="shadow-lg shadow-slate-300 h-[4vh] rounded-full bg-wovie pl-2 text-[2.3vh] text-third w-[55vw] sm:w-[25vw]"
                     onChange={handleDistrictChange}
                     value={selectedDistrict || ''}>
                 <option className="" value="">Wähle einen Bezirk</option>
@@ -40,24 +40,24 @@ export default function MapFilterSection({
                     <option key={district.id} value={district.districtName}>{district.districtName}</option>
                 ))}
             </select>
-            <div className="flex flex-col md:flex-row mt-[2vh] sm:mt-[0vh] md:ml-[2.5vw] py-[2vh]">
+            <div className="h-[5vh] p-4 shadow-slate-300 shadow-lg border md:rounded-full items-center flex flex-col md:flex-row mt-[2vh] sm:mt-[0vh] md:ml-[2.5vw] py-[2vh] sm:py-[0vh]">
                 {wasteTypes.map(({english, german}, index) => {
                     const color = english == "organicWaste" ? "#924C1A" :
                         english == "plasticWaste" ? "#FDE306" :
                             english == "glassWaste" ? "#2F5924" : "third";
 
-                    return (<div key={index} className="pl-[0.5vw] flex items-center text-third">
-                        <input onChange={handleWasteTypeChange} type="checkbox" className="border-2 ml-[0.5vw]"
+                    return (<div key={index} className="flex items-center text-third ml-4">
+                        <input onChange={handleWasteTypeChange} type="checkbox" className="border-2 mr-2 shadow-slate-300 shadow-md"
                                value={english}/>
                         <label
-                            className="ml-3 font-light text-[2.5vh] sm:text-[2vh] md:text-[2.5vh]">{german}</label>
+                            className="text-[2.3vh] mr-2">{german}</label>
                         <div style={{backgroundColor: color}}
-                             className="ml-[1vw] md:ml-[0.5vw] rounded-full h-[2vh] w-[2vh] md:h-[2.5vh] md:w-[2.5vh]"></div>
+                             className="rounded-full h-[2vh] w-[2vh] shadow-slate-300 shadow-sm"></div>
                     </div>);
 
                 })}
                 <button type="submit"
-                        className="bg-wovie rounded-full w-[10vw] md:w-[8vw] lg:w-[6vw] h-[4vh] ml-0 mt-3 md:mt-[0]  sm:ml-[2.5vw] text-third text-[1.7vh] md:text-[1.9vh] font-semibold">LOS!
+                        className="shadow-slate-300 shadow-md mr-4 bg-wovie rounded-full h-[3.8vh] px-6 text-center ml-0 mt-3 md:mt-[0] sm:ml-[2.5vw] text-third text-[1.7vh] md:text-[1.9vh] font-semibold">LOS!
                 </button>
             </div>
         </form>

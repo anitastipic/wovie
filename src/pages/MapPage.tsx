@@ -26,7 +26,7 @@ export default function MapPage() {
                 <div className={className}>
                     <Navbar></Navbar>
                 </div>
-            <div className="pt-[3vh] md:pt-[18vh] w-full">
+            <div className="pt-[3vh] md:pt-[20vh] w-full">
                 <Map/>
             </div>
         </div>
