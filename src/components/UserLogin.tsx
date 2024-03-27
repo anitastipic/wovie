@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Navbar from "./Navbar.tsx";
 import {useAuth} from "../context/AuthenticationContext.tsx";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function UserLogin() {
     const [username, setUsername] = useState("");
@@ -62,7 +62,7 @@ export default function UserLogin() {
                         </button>
                     </form>
                     <p className="mt-5 text-sm">Kein Account? Kein Problem! Einfach
-                        <a href="/register" className="text-wovie font-semibold ">{' hier '}</a>
+                        <Link to="/register" className="text-wovie font-semibold ">{' hier '}</Link>
                         klicken und Hero werden.
                     </p>
                 </div>
