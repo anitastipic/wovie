@@ -30,13 +30,12 @@ export default function MapPage() {
     const [districts, setDistricts] = useState<District[]>([]);
     const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
     const [selectedWasteTypes, setSelectedWasteTypes] = useState({paperWaste:false, glassWaste: false, organicWaste:false, plasticWaste: false})
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const fetchDistricts = () => {
-        setIsLoading(true);
         return fetch("https://wovie-backend.onrender.com/district")
             .then((res) => res.json())
-            .finally(() => setIsLoading(true));
+            .finally(() => setIsLoading(false));
     };
 
     useEffect(() => {
