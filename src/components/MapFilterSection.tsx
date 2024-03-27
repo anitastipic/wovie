@@ -30,12 +30,12 @@ export default function MapFilterSection({
     return (
         <form className="py-4 md:py-2 px-4 shadow-slate-300 shadow-lg border sm:rounded-full w-[90vw] flex flex-col sm:flex-row items-start sm:items-center"
               onSubmit={handleSubmit}>
-            <select className="shadow-lg shadow-slate-300 h-[4vh] rounded-full bg-wovie pl-2 text-[2.3vh] text-third w-[55vw] sm:w-[25vw]"
+            <select className="border hover:border-white shadow-lg shadow-slate-300 h-[4vh] rounded-full bg-wovie pl-2 text-[2.3vh] text-third w-[55vw] sm:w-[25vw]"
                     onChange={handleDistrictChange}
                     value={selectedDistrict || ''}>
                 <option className="" value="">Wähle einen Bezirk</option>
                 {isLoading &&
-                    <option>Districts Loading...</option>}
+                    <option disabled={true}>Bezirke laden...</option>}
                 {districts.map(district => (
                     <option key={district.id} value={district.districtName}>{district.districtName}</option>
                 ))}
@@ -56,7 +56,7 @@ export default function MapFilterSection({
                     </div>);
                 })}
                 <button type="submit"
-                        className="shadow-slate-300 shadow-md md:mr-4 bg-wovie rounded-full px-5 md:px-6 py-1 text-center mt-[0.5vh] ml-0 md:mt-[0] sm:ml-[2.5vw] text-third font-semibold">LOS!
+                        className="border hover:border-white hover:text-white shadow-slate-300 shadow-md md:mr-4 bg-wovie rounded-full px-5 md:px-6 py-1 text-center mt-[0.5vh] ml-0 md:mt-[0] sm:ml-[2.5vw] text-third font-semibold">LOS!
                 </button>
             </div>
         </form>

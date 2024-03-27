@@ -21,7 +21,7 @@ export default function Home() {
                                 Container in deiner Nähe</p>
                         </div>
                         <button
-                            className="shadow-slate-500 shadow-md absolute top-[77vh] left-[30vw] sm:left-[11vw] h-[9vh] sm:h-[6vw] w-[40vw] sm:w-[15vw] bg-third rounded-full text-[2.5vh] sm:text-[2vw] text-amber-50"
+                            className="border-third hover:border-white hover:text-wovie shadow-slate-700 shadow-md absolute top-[77vh] left-[30vw] sm:left-[11vw] h-[9vh] sm:h-[6vw] w-[40vw] sm:w-[15vw] bg-third rounded-full text-[2.5vh] sm:text-[2vw] text-amber-50"
                             onClick={() => nav('/map')}>Zur Karte
                         </button>
                         <img className="absolute h-[18vw] top-[25vh] xl:top-[22vh] left-[74.3vw] invisible sm:visible"
