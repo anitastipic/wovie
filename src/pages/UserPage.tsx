@@ -55,14 +55,9 @@ export default function UserPage() {
         });
     }
 
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        event.preventDefault();
-        nav('/register');
-    };
-
 
     if (!authorized) {
-        return <UserLogin onClick={handleClick}/>;
+        return <UserLogin/>;
     }
     return (
         <div className="bg-third h-screen">
