@@ -28,8 +28,8 @@ export default function Navbar() {
 
     return (
         <>{isMobileOrTablet &&
-            <nav>
-                <div className="bg-white shadow-slate-300 shadow-sm z-20 h-[13vh] w-full pl-6 py-3 flex items-center fixed
+            <nav className="">
+                <div className="fixed z-30 bg-white shadow-slate-300 shadow-sm h-[13vh] w-full pl-6 py-3 flex items-center
                 justify-between">
                     <Link to="/" className="flex h-auto w-[9vh] flex-shrink-0 justify-center">
                         <img src={logo} alt="Logo" className="object-contain"/>

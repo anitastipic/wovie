@@ -1,38 +1,76 @@
-import Navbar from "../components/Navbar.js";
-import pin from "../assets/pin.svg";
 import {useNavigate} from "react-router-dom";
-import trashcanYellow from '/trashcanYellow.png';
-import Curve from "../components/Curve.tsx";
+import map1 from "../../public/map_sequence/map1.png";
+import map2 from "../../public/map_sequence/map2.png";
+import map3 from "../../public/map_sequence/map3.png";
+import scrollIcon from "../assets/scroll-down.svg";
+import {useEffect} from "react";
+
 
 
 export default function Home() {
-
     const nav = useNavigate();
+
+    useEffect(() => {
+        const handleScroll = () => {
+            let scrollTop = window.scrollY;
+            const fadeStart2 = 0;
+            const fadeStart3 = 350;
+            const fadeDistance = 400;
+
+            const images = document.querySelectorAll('#scrollContainer img');
+
+            images.forEach((img, index) => {
+                const element = img as HTMLElement;
+                let opacity = 1;
+
+                if (index === 1) { // Second image
+                    opacity = Math.min(1, Math.max(0, (scrollTop - fadeStart2) / fadeDistance));
+                } else if (index === 2) { // Third image
+                    opacity = Math.min(1, Math.max(0, (scrollTop - fadeStart3) / fadeDistance));
+                }
+
+                element.style.opacity = opacity.toString();
+            });
+        };
+
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+
     return (
         <>
-            <div className="overflow-x-clip bg-wovie">
-                <Navbar/>
-                <div className="h-[100vh] z-10 relative bg-wovie">
-                    <Curve></Curve>
-                    <div className="sm:flex-none flex flex-col items-center">
-                        <div
-                            className="w-[35vh] sm:w-[50vh] z-20 absolute top-[18vh] sm:top-[35vh] left-[11vw] sm:left-[-5vw] md:left-[6vw] xl:top-[35vh] flex-col text-third justify-items-center text-center">
-                            <p className="text-shadow-wovie font-bold text-[4.5vh] md:text-[5.5vh] text-center">Finde
-                                Container in deiner Nähe</p>
+            <div className="overflow-x-clip scroll-smooth">
+                <div className="z-10 h-[200vh] w-full relative top-[18vh] left-[0vw]">
+                    <div className="h-[100vh] w-full fixed">
+                        <div id="scrollContainer" className="h-[30vh] w-[80vw] sm:h-[40vh] sm:w-[40vw] absolute top-[25vh] left-[10vw] sm:top-[20vh] sm:left-[50vw]">
+                            <img
+                                className="absolute shadow-slate-500 shadow-xl border-slate-400 border-2 rounded-md h-[30vh] sm:h-[40vh] w-auto object-cover"
+                                src={map1}/>
+                            <img
+                                className="absolute border-slate-400 border-2 rounded-md h-[30vh] sm:h-[40vh] w-auto object-cover"
+                                src={map2}/>
+                            <img
+                                id={"finalImg"}
+                                className="absolute border-slate-400 border-2 rounded-md h-[30vh] sm:h-[40vh] w-auto object-cover"
+                                src={map3}/>
                         </div>
-                        <button
-                            className="border-third hover:border-white hover:text-wovie shadow-slate-700 shadow-md absolute top-[77vh] left-[30vw] sm:left-[11vw] h-[9vh] sm:h-[6vw] w-[40vw] sm:w-[15vw] bg-third rounded-full text-[2.5vh] sm:text-[2vw] text-amber-50"
-                            onClick={() => nav('/map')}>Zur Karte
-                        </button>
-                        <img className="absolute h-[18vw] top-[25vh] xl:top-[22vh] left-[74.3vw] invisible sm:visible"
-                             src={pin}/>
-                        <img className="absolute h-[26vw] top-[50vh] xl:top-[50vh] left-[70.3vw] invisible sm:visible"
-                             src={trashcanYellow}/>
-                        <img className="visible sm:invisible h-[30vh] z-20 absolute top-[40vh]" src={trashcanYellow}/>
+                        <div
+                            className="leading-[3rem] sm:leading-[3.5rem] text-center sm:text-left z-20 w-[60vw] sm:w-[25vw] text-third text-3xl sm:text-[5vh] font-extrabold absolute top-[5vh] left-[20vw] sm:top-[30vh] sm:left-[8vw]">
+                            <p>Finde Container in deiner Nähe</p>
+                        </div>
+                        <img alt={"scroll down icon"} src={scrollIcon} className="opacity-50 animate-bounce h-auto w-[11vw] sm:w-[3vw] absolute top-[69vh] sm:top-[75vh] left-[44.5vw]"/>
                     </div>
+                </div>
+                <div className="h-[87vh] w-full bg-white absolute top-[220vh] z-10 content-center text-center">
+                    <p className="text-third font-bold text-3xl">WoVie - Wo und Wie recyceln in Wien</p>
+                    <button
+                        className="mt-8 hover:text-wovie shadow-slate-700 shadow-md px-6 py-4 bg-third rounded-full text-[2.5vh] font-bold text-amber-50"
+                        onClick={() => nav('/map')}>Zur Karte
+                    </button>
                 </div>
             </div>
         </>
-    )
+    );
 }
-

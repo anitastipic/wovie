@@ -1,43 +1,29 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 
-type TypeWriterProp = {
-    text: string[],
-    typingDelay: number,
-    nextWordDelay: number;
-    style: string;
-}
+type TypewriterProps = {
+    text: string;
+    speed?: number; // Speed in characters per minute
+};
 
-export default function Typewriter({text, typingDelay, nextWordDelay, style}: TypeWriterProp) {
-    const [index, setIndex] = useState(0);
-    const [subIndex, setSubIndex] = useState(0);
-    const [blink, setBlink] = useState(true);
+export default function TypeWriter ({ text, speed } : TypewriterProps) {
+    const [displayedText, setDisplayedText] = useState('');
 
     useEffect(() => {
-        if (subIndex <= text[index].length) {
-            setTimeout(() => {
-                setSubIndex(subIndex + 1);
-            }, typingDelay);
-        } else {
-            setTimeout(() => {
-                setIndex((index + 1) % text.length);
-                setSubIndex(0);
-            }, nextWordDelay);
-        }
-    }, [subIndex, index]);
+        let index = 0;
+        const timeBetweenChars = 60000 / speed; // Calculate the delay in milliseconds
 
-    useEffect(() => {
-        const blinkInterval = setInterval(() => {
-            setBlink(b => !b);
-        }, 500);
+        const timer = setInterval(() => {
+            if (index < text.length) {
+                setDisplayedText((prev) => prev + text.charAt(index));
+                index++;
+            } else {
+                clearInterval(timer); // Stop the interval when the entire text is displayed
+            }
+        }, timeBetweenChars);
 
-        return () => clearInterval(blinkInterval);
-    }, []);
+        return () => clearInterval(timer); // Cleanup on component unmount
+    }, [text, speed]); // Dependencies
 
-    return (
-        <div id="typewriter" className="h-20 flex justify-center items-center">
-            <span className={style}>{text[index].substring(0, subIndex)}</span>
-            <span className={`cursor ${blink ? 'cursor--active' : ''}`} />
-        </div>
-    );
-}
+    return <div>{displayedText}</div>;
+};
 
