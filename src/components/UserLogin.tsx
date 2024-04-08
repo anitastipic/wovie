@@ -3,7 +3,11 @@ import Navbar from "./Navbar.tsx";
 import {useAuth} from "../context/AuthenticationContext.tsx";
 import {useNavigate} from "react-router-dom";
 
-export default function UserLogin() {
+type UserLoginProps = {
+    onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+
+}
+export default function UserLogin({onClick} : UserLoginProps) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const { authorize } = useAuth();
@@ -62,7 +66,7 @@ export default function UserLogin() {
                         </button>
                     </form>
                     <p className="mt-5 text-sm">Kein Account? Kein Problem! Einfach
-                        <a href="/register" className="text-wovie font-semibold ">{' hier '}</a>
+                        <button onClick={onClick} className="text-wovie font-semibold mr-[0.5vh] ">hier</button>
                         klicken und Hero werden.
                     </p>
                 </div>

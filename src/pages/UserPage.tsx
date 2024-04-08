@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar.tsx";
 import {useEffect, useState} from "react";
 import UserLogin from "../components/UserLogin.tsx";
 import {useAuth} from "../context/AuthenticationContext.tsx";
+import {useNavigate} from "react-router-dom";
 
 type Profile = {
     username: string;
@@ -10,6 +11,7 @@ type Profile = {
 export default function UserPage() {
 
     const {authorized, profile, login, logout} = useAuth();
+    const nav = useNavigate();
     const fetchProfile = async () => {
         try {
             const response = await fetch("http://localhost:8080/user/profile", {
@@ -53,8 +55,14 @@ export default function UserPage() {
         });
     }
 
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        event.preventDefault();
+        nav('/register');
+    };
+
+
     if (!authorized) {
-        return <UserLogin/>;
+        return <UserLogin onClick={handleClick}/>;
     }
     return (
         <div className="bg-third h-screen">
