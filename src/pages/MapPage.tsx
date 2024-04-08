@@ -81,9 +81,6 @@ export default function MapPage() {
 
     return (
         <div className="bg-white h-screen w-full scroll-m-0">
-                <div>
-                    <Navbar></Navbar>
-                </div>
             <div className="pt-[15vh] md:pt-[20vh] w-full">
                 <div className="flex flex-col items-center h-[84%] bg-white">
                     <MapFilterSection
