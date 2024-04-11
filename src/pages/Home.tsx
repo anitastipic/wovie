@@ -22,9 +22,9 @@ export default function Home() {
                 const element = img as HTMLElement;
                 let opacity = 1;
 
-                if (index === 1) { // Second image
+                if (index === 1) {
                     opacity = Math.min(1, Math.max(0, (scrollTop - fadeStart2) / fadeDistance));
-                } else if (index === 2) { // Third image
+                } else if (index === 2) {
                     opacity = Math.min(1, Math.max(0, (scrollTop - fadeStart3) / fadeDistance));
                 }
 
@@ -60,8 +60,10 @@ export default function Home() {
                             className="leading-[3rem] sm:leading-[3.5rem] text-center sm:text-left z-20 w-[60vw] sm:w-[25vw] text-third text-3xl sm:text-[5vh] font-extrabold absolute top-[5vh] left-[20vw] sm:top-[30vh] sm:left-[8vw]">
                             <p>Finde Container in deiner Nähe</p>
                         </div>
-                        <img alt={"scroll down icon"} src={scrollIcon}
-                             className="opacity-50 animate-bounce h-auto w-[11vw] sm:w-[3vw] absolute top-[69vh] sm:top-[75vh] left-[44.5vw]"/>
+                        <div className="w-full flex justify-center absolute top-[69vh] sm:top-[75vh]">
+                            <img alt={"scroll down icon"} src={scrollIcon}
+                                 className="opacity-50 animate-bounce h-auto w-[11vw] sm:w-[3vw]"/>
+                        </div>
                     </div>
                 </div>
                 <div
