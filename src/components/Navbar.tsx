@@ -57,12 +57,7 @@ export default function Navbar() {
                         <div className="h-[6vh] content-center shadow-slate-300 shadow-sm">
                             <Link to="/über-uns"
                                   className=" font-semibold text-lg transition-colors duration-300 transform hover:text-wovie mx-3"
-                            >Über uns</Link>
-                        </div>
-                        <div className="h-[6vh] content-center shadow-slate-300 shadow-sm">
-                            <Link to="/kontakt"
-                                  className=" font-semibold text-lg transition-colors duration-300 transform hover:text-wovie mx-3"
-                            >Kontakt</Link>
+                            >Über mich</Link>
                         </div>
                     </div>
                 }
@@ -83,10 +78,7 @@ export default function Navbar() {
                             >Recycling 1 - 0 - 1</Link>
                             <Link to="/über-uns"
                                   className=" font-semibold text-lg transition-colors duration-300 transform hover:text-wovie mx-3"
-                            >Über uns</Link>
-                            <Link to="/kontakt"
-                                  className=" font-semibold text-lg transition-colors duration-300 transform hover:text-wovie mx-3"
-                            >Kontakt</Link>
+                            >Über mich</Link>
                         </div>
                         <Link to="/hero" className=" h-[6.5vh] flex w-auto ml-7">
                             <img src={profileIcon} alt="Hero" className="object-contain"/>
