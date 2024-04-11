@@ -11,6 +11,7 @@ import UserLogin from "./components/UserLogin.tsx";
 import UserPage from "./pages/UserPage.tsx";
 import { AuthProvider } from "./context/AuthenticationContext.tsx";
 import InProgress from "./pages/InProgress.tsx";
+import About from "./pages/About.tsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
@@ -26,7 +27,7 @@ root.render(
                         <Route path="hero" element={<UserPage/>} />
                         <Route path="recycling-1-0-1" element={<InProgress/>} />
                         <Route path="kontakt" element={<InProgress/>} />
-                        <Route path="über-uns" element={<InProgress/>} />
+                        <Route path="über-uns" element={<About/>} />
                         <Route path="*" element={<ErrorPage/>} />
                     </Route>
                 </Routes>
