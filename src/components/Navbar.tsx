@@ -43,7 +43,7 @@ export default function Navbar() {
                 </div>
                 {sideBarIsVisible &&
                     <div
-                        className="bg-white shadow-slate-300 shadow-lg absolute top-[13vh] right-0 text-center pr-2 h-[24vh] w-[45vw] text-third">
+                        className="z-20 bg-white shadow-slate-300 shadow-lg absolute top-[13vh] right-0 text-center pr-2 h-[18vh] w-[45vw] text-third">
                         <div className="h-[6vh] shadow-slate-300 shadow-sm content-center">
                             <Link to="/map"
                                   className="text-lg font-semibold transition-colors duration-300 transform hover:text-wovie mx-3"
