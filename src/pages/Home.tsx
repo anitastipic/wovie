@@ -49,11 +49,11 @@ export default function Home() {
                                 className="absolute shadow-slate-500 shadow-xl border-slate-400 border-2 rounded-md h-[30vh] sm:h-[40vh] w-auto object-cover"
                                 src={map1}/>
                             <img
-                                className="absolute border-slate-400 border-2 rounded-md h-[30vh] sm:h-[40vh] w-auto object-cover"
+                                className="opacity-0 absolute border-slate-400 border-2 rounded-md h-[30vh] sm:h-[40vh] w-auto object-cover"
                                 src={map2}/>
                             <img
                                 id={"finalImg"}
-                                className="absolute border-slate-400 border-2 rounded-md h-[30vh] sm:h-[40vh] w-auto object-cover"
+                                className="opacity-0 absolute border-slate-400 border-2 rounded-md h-[30vh] sm:h-[40vh] w-auto object-cover"
                                 src={map3}/>
                         </div>
                         <div
