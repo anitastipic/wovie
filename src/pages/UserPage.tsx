@@ -23,9 +23,11 @@ export default function UserPage() {
             });
 
             if (response.ok) {
+                console.log(response);
                 const profileData: Profile = await response.json();
                 login(profileData);
             } else {
+                console.log(response);
                 logout();
             }
         } catch (error) {
@@ -37,6 +39,7 @@ export default function UserPage() {
     useEffect(() => {
         if(authorized) {
             fetchProfile();
+            console.log(profile);
         }
     }, [authorized, login, logout]);
 
