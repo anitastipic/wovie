@@ -12,39 +12,41 @@ export default function UserPage() {
 
     const {authorized, profile, login, logout} = useAuth();
     const nav = useNavigate();
-    const fetchProfile = async () => {
-        try {
-            const response = await fetch("https://wovie-backend.onrender.com/user/profile", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                credentials: 'include'
-            });
-
-            if (response.ok) {
-                console.log(response);
-                const profileData: Profile = await response.json();
+    const fetchProfile = () => {
+        fetch("https://wovie-backend.onrender.com/user/profile", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: 'include'
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log("res", response);
+                    return response.json();
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            })
+            .then(profileData => {
+                console.log("profile", profileData)
                 login(profileData);
-            } else {
-                console.log(response);
+            })
+            .catch(error => {
+                console.error('Error fetching profile:', error);
                 logout();
-            }
-        } catch (error) {
-            console.error('Error fetching profile:', error);
-            logout();
-        }
+            });
     };
+
 
     useEffect(() => {
         if(authorized) {
             fetchProfile();
-            console.log(profile);
         }
-    }, [authorized, login, logout]);
+    }, [authorized]);
 
     function handleLogout() {
-        fetch("http://localhost:8080/auth/logout", {
+        fetch("https://wovie-backend.onrender.com/auth/logout", {
             method: "POST",
             credentials: 'include'
         }).then(res => {

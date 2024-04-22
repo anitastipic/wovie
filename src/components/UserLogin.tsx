@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 export default function UserLogin() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const { authorize } = useAuth();
+    const {authorize, profile, login, logout} = useAuth();
 
     const navigate = useNavigate();
 
@@ -25,12 +25,12 @@ export default function UserLogin() {
             body: JSON.stringify(bodyData),
             credentials: 'include'
         }).then((res) => {
-            console.log(bodyData);
-            console.log(res);
             if (!res.ok) throw new Error('Login failed');
             if (res.ok) {
+                console.log("sucessful login")
                 authorize();
-                navigate('/hero');}
+                navigate('/hero');
+            }
         })
 
     }
@@ -62,7 +62,8 @@ export default function UserLogin() {
                         </button>
                     </form>
                     <p className="mt-5 text-sm">Kein Account? Kein Problem! Einfach
-                        <button onClick={() =>navigate("/register")} className="text-wovie font-semibold mr-[0.5vh] ">hier</button>
+                        <button onClick={() => navigate("/register")}
+                                className="text-wovie font-semibold mr-[0.5vh] ">hier</button>
                         klicken und Hero werden.
                     </p>
                 </div>
