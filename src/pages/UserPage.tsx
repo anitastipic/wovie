@@ -35,9 +35,7 @@ export default function UserPage() {
     };
 
     useEffect(() => {
-        if (!authorized) {
-            fetchProfile();
-        }
+        fetchProfile();
     }, [authorized, login, logout]);
 
     function handleLogout() {
