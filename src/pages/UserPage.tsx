@@ -14,7 +14,7 @@ export default function UserPage() {
     const nav = useNavigate();
     const fetchProfile = async () => {
         try {
-            const response = await fetch("http://localhost:8080/user/profile", {
+            const response = await fetch("https://wovie-backend.onrender.com/user/profile", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
