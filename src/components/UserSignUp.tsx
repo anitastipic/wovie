@@ -15,7 +15,7 @@ export default function UserSignUp() {
             password: password
         }
 
-        await fetch("http://localhost:8080/user/register", {
+        await fetch("https://wovie-backend.onrender.com/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
